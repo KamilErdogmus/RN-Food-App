@@ -5,6 +5,7 @@ import {
   StatusBar,
   Image,
   ScrollView,
+  Alert,
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import * as Icon from "react-native-feather";
@@ -18,6 +19,7 @@ import {
   selectCartItems,
   selectCartTotal,
 } from "../store/slices/cartSlice";
+import { urlFor } from "../../foodapp/sanity";
 
 const CartScreen = () => {
   const [groupedItems, setGroupedItems] = useState({});
@@ -25,6 +27,7 @@ const CartScreen = () => {
   const rest = useSelector(selectRestaurant);
   const cartItems = useSelector(selectCartItems);
   const cartTotal = useSelector(selectCartTotal);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -55,7 +58,7 @@ const CartScreen = () => {
             Your Cart
           </Text>
           <Text className="text-gray-500 text-center">
-            {rest?.name}
+            {rest?.title}
           </Text>
         </View>
       </View>
@@ -71,7 +74,12 @@ const CartScreen = () => {
         <Text className="text-black flex-1 pl-4">
           Delivery in 20-30 minutes
         </Text>
-        <TouchableOpacity onPress={() => dispatch(clearCart())}>
+        <TouchableOpacity
+          onPress={() => [
+            dispatch(clearCart()),
+            Alert.alert("", "Cart has been cleared."),
+          ]}
+        >
           <Text
             style={{ color: themeColors.text }}
             className="font-bold"
@@ -90,57 +98,51 @@ const CartScreen = () => {
             No items in the cart.
           </Text>
         ) : (
-          Object.entries(groupedItems).map(([key, items]) => {
-            let dish = items[0];
-            return (
-              <View
-                key={key}
-                className="flex-row items-center space-x-3 py-2 px-4 bg-white rounded-3xl mx-2 mb-3 shadow-lg"
-              >
-                <Text
-                  className="font-bold w-8"
-                  style={{ color: themeColors.text }}
+          Object.entries(groupedItems).map(([key, items]) => (
+            <View key={key} className="bg-white ">
+              {items.map((dish) => (
+                <View
+                  key={dish._id}
+                  className="flex-row items-center space-x-3 py-2 px-4 border border-gray-400 mx-2 mb-3 shadow-lg rounded-3xl "
                 >
-                  {items.length} x
-                </Text>
-                {dish?.image ? (
+                  <Text
+                    className="font-bold w-8"
+                    style={{ color: themeColors.text }}
+                  >
+                    {dish.quantity} x
+                  </Text>
                   <Image
                     className="h-16 w-16 rounded-full"
-                    source={dish.image}
+                    source={{ uri: urlFor(dish.image).url() }}
                   />
-                ) : (
-                  <Image
-                    className="h-16 w-16 rounded-full"
-                    source={require("../../assets/dishes/pizza.jpeg")}
-                  />
-                )}
-                <Text className="text-gray-700 flex-1">
-                  {dish?.name}
-                </Text>
-                <Text className="text-green-500 text-base font-semibold">
-                  ${dish?.price}
-                </Text>
-                <TouchableOpacity
-                  onPress={() =>
-                    dish &&
-                    dish.id &&
-                    dispatch(removeFromCart({ id: dish.id }))
-                  }
-                  style={{
-                    backgroundColor: themeColors.bgColor(1),
-                  }}
-                  className="p-1 rounded-full"
-                >
-                  <Icon.Minus
-                    height={20}
-                    width={20}
-                    strokeWidth={2}
-                    stroke="white"
-                  />
-                </TouchableOpacity>
-              </View>
-            );
-          })
+                  <Text className="text-gray-700 flex-1">
+                    {dish.title}
+                  </Text>
+                  <Text className="text-green-500 text-base font-semibold">
+                    ${dish.price}
+                  </Text>
+                  <TouchableOpacity
+                    onPress={() =>
+                      dish &&
+                      dish._id &&
+                      dispatch(removeFromCart({ id: dish._id }))
+                    }
+                    style={{
+                      backgroundColor: themeColors.bgColor(1),
+                    }}
+                    className="p-1 rounded-full"
+                  >
+                    <Icon.Minus
+                      height={20}
+                      width={20}
+                      strokeWidth={2}
+                      stroke="white"
+                    />
+                  </TouchableOpacity>
+                </View>
+              ))}
+            </View>
+          ))
         )}
       </ScrollView>
 

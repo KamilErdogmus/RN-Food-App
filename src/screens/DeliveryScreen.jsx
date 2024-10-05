@@ -1,16 +1,36 @@
 import React from "react";
-import { Image, Text, View } from "react-native";
+import { Alert, Image, Text, View } from "react-native";
 import MapView, { Marker } from "react-native-maps";
 import { themeColors } from "../utils/theme";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import * as Icon from "react-native-feather";
 import { useNavigation } from "@react-navigation/native";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { selectRestaurant } from "../store/slices/restaurantSlice";
+import { clearCart } from "../store/slices/cartSlice";
 
 const DeliveryScreen = () => {
   const rest = useSelector(selectRestaurant);
   const navigation = useNavigation();
+  const dispatch = useDispatch();
+
+  const cancelOrder = () => {
+    Alert.alert(
+      "",
+      "Your order has been successfully canceled.",
+      [
+        {
+          text: "OK",
+          onPress: () => {
+            dispatch(clearCart());
+            setTimeout(() => {
+              navigation.navigate("Home");
+            }, 500);
+          },
+        },
+      ]
+    );
+  };
 
   return (
     <View className="flex-1">
@@ -86,7 +106,7 @@ const DeliveryScreen = () => {
               />
             </TouchableOpacity>
             <TouchableOpacity
-              onPress={() => navigation.navigate("Home")}
+              onPress={cancelOrder}
               className="bg-white p-2 rounded-full"
             >
               <Icon.X strokeWidth={5} stroke={"red"} />

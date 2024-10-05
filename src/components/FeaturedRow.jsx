@@ -1,18 +1,30 @@
-import {View, Text, TouchableOpacity, ScrollView} from 'react-native';
-import React from 'react';
-import {themeColors} from '../utils/theme';
-import RestaurantCard from './RestaurantCard';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  ScrollView,
+} from "react-native";
+import React from "react";
+import { themeColors } from "../utils/theme";
+import RestaurantCard from "./RestaurantCard";
 
-const FeaturedRow = ({title, description, restaurant = []}) => {
+const FeaturedRow = ({ title, description, restaurant }) => {
   return (
     <View>
-      <View className="flex-row justify-between items-center px-4">
+      <View className="flex-row justify-between items-center px-4 bg-orange-100 rounded-xl ">
         <View>
-          <Text className="text-black font-bold text-lg">{title}</Text>
-          <Text className="text-black text-xs">{description}</Text>
+          <Text className="text-black font-bold text-lg">
+            {title}
+          </Text>
+          <Text className="text-black text-xs">
+            {description}
+          </Text>
         </View>
         <TouchableOpacity>
-          <Text className="font-semibold" style={{color: themeColors.text}}>
+          <Text
+            className="font-semibold"
+            style={{ color: themeColors.text }}
+          >
             See All
           </Text>
         </TouchableOpacity>
@@ -22,9 +34,10 @@ const FeaturedRow = ({title, description, restaurant = []}) => {
         horizontal
         className="overflow-visible py-5"
         showsHorizontalScrollIndicator={false}
-        contentContainerStyle={{paddingHorizontal: 15}}>
-        {restaurant.map(item => (
-          <RestaurantCard key={item.id} item={item} />
+        contentContainerStyle={{ paddingHorizontal: 15 }}
+      >
+        {restaurant.map((item) => (
+          <RestaurantCard key={item._id} item={item} />
         ))}
       </ScrollView>
     </View>

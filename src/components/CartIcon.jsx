@@ -12,6 +12,10 @@ const CartIcon = () => {
   const navigation = useNavigation();
   const cartItems = useSelector(selectCartItems);
   const cartTotal = useSelector(selectCartTotal);
+  const totalQuantity = cartItems.reduce(
+    (total, item) => total + item.quantity,
+    0
+  );
   if (!cartItems.length) return;
   return (
     <View className="absolute bottom-5 w-full z-50">
@@ -22,7 +26,7 @@ const CartIcon = () => {
       >
         <View className="p-2 px-4 rounded-full bg-white/30">
           <Text className="text-white text-lg font-extrabold">
-            {cartItems.length}
+            {totalQuantity}
           </Text>
         </View>
 
