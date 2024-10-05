@@ -24,11 +24,11 @@ This is a Food Delivery App built using React Native-EXPO. The app allows users 
 
 ## Preview
 
-![]()
+![](assets/FoodApp-GIF.gif)
 
 ## Server
 
-![Sanity.io](https://www.sanity.io/)
+[Sanity.io](https://www.sanity.io/)
 
 ## Installation
 

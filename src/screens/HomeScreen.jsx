@@ -62,7 +62,7 @@ const HomeScreen = () => {
       >
         <Categories />
 
-        <View className="mt-5 ">
+        <View className="mt-5">
           {featuredRestaurants.map((item) => (
             <FeaturedRow
               key={item._id}

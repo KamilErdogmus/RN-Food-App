@@ -38,7 +38,7 @@ const DeliveryScreen = () => {
         zoomEnabled={true}
         scrollDuringRotateOrZoomEnabled
         scrollEnabled
-        zoomTapEnabled={true}
+        zoomTapEnabled
         initialRegion={{
           latitude: rest.lat,
           longitude: rest.lng,
