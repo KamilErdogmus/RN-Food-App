@@ -20,7 +20,7 @@ const Categories = () => {
   }, []);
 
   return (
-    <View className="mt-3">
+    <View className="pt-3 bg-orange-300">
       <ScrollView
         className="overflow-visible px-4"
         horizontal

@@ -1,8 +1,8 @@
-# FoodApp in React Native-EXPO
+# FoodApp in React Native-Expo
 
 ## Description
 
-This is a Food Delivery App built using React Native-EXPO. The app allows users to browse menus, order food, and track their deliveries in a user-friendly interface. It utilizes various libraries to enhance the user experience and streamline functionality.
+This is a Food Delivery App built using React Native-Expo. The app allows users to browse menus, order food, and track their deliveries in a user-friendly interface. It utilizes various libraries to enhance the user experience and streamline functionality.
 
 ## Libraries and Tools
 
@@ -24,9 +24,9 @@ This is a Food Delivery App built using React Native-EXPO. The app allows users 
 
 ## Preview
 
-![](assets/FoodApp-GIF.gif)
+![](assets/G_FoodApp.gif)
 
-## Server
+## CMS
 
 [Sanity.io](https://www.sanity.io/)
 
@@ -72,6 +72,16 @@ cd ios
 
 ```bash
  cd ..
+```
+
+#### For CMS
+
+```bash
+ cd foodapp
+```
+
+```bash
+npm install
 ```
 
 ## Step 1: Start the Metro Server

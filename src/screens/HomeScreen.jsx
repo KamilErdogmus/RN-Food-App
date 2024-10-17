@@ -1,10 +1,4 @@
-import {
-  View,
-  Text,
-  StatusBar,
-  TextInput,
-  ScrollView,
-} from "react-native";
+import { View, Text, StatusBar, TextInput, ScrollView } from "react-native";
 import React, { useEffect, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import * as Icon from "react-native-feather";
@@ -14,9 +8,7 @@ import FeaturedRow from "../components/FeaturedRow";
 import { getFeaturedRestaurants } from "../../foodapp/api";
 
 const HomeScreen = () => {
-  const [featuredRestaurants, setFeaturedRestaurants] = useState(
-    []
-  );
+  const [featuredRestaurants, setFeaturedRestaurants] = useState([]);
 
   useEffect(() => {
     getFeaturedRestaurants().then((data) => {
@@ -26,21 +18,15 @@ const HomeScreen = () => {
 
   return (
     <SafeAreaView className="bg-white flex-1">
-      <StatusBar
-        barStyle={"dark-content"}
-        backgroundColor={"white"}
-      />
+      <StatusBar barStyle={"dark-content"} backgroundColor={"white"} />
 
       <View className="flex-row items-center space-x-2 px-4 py-2 bg-orange-200/50 ">
         <View className="flex-row flex-1 items-center p-3 rounded-full border border-gray-300">
           <Icon.Search height={25} width={25} stroke="gray" />
-          <TextInput
-            placeholder="Restaurants"
-            className="ml-2 flex-1"
-          />
+          <TextInput placeholder="Restaurants" className="ml-2 flex-1" />
           <View className="flex-row items-center space-x-1 border-0 pl-1 border-l-2 border-gray-300">
             <Icon.MapPin height={25} width={25} stroke="gray" />
-            <Text className="text-black">New York,NYC</Text>
+            <Text className="text-black">Ankara,TR</Text>
           </View>
         </View>
         <View
@@ -62,7 +48,7 @@ const HomeScreen = () => {
       >
         <Categories />
 
-        <View className="mt-5">
+        <View className="pt-5 bg-orange-300">
           {featuredRestaurants.map((item) => (
             <FeaturedRow
               key={item._id}

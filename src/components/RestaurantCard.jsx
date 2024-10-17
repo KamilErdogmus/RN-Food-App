@@ -1,9 +1,4 @@
-import {
-  View,
-  Text,
-  TouchableWithoutFeedback,
-  Image,
-} from "react-native";
+import { View, Text, TouchableWithoutFeedback, Image } from "react-native";
 import React from "react";
 import * as Icon from "react-native-feather";
 import { themeColors } from "../utils/theme";
@@ -14,12 +9,13 @@ const RestaurantCard = ({ item }) => {
   const navigation = useNavigation();
   return (
     <TouchableWithoutFeedback
-      onPress={() =>
-        navigation.navigate("Restaurant", { ...item })
-      }
+      onPress={() => navigation.navigate("Restaurant", { ...item })}
     >
       <View
         style={{
+          borderWidth: 1,
+          borderColor: "gray",
+
           shadowColor: themeColors.bgColor(0, 2),
           shadowRadius: 7,
         }}
@@ -34,16 +30,9 @@ const RestaurantCard = ({ item }) => {
             {item.title}
           </Text>
           <View className="flex-row items-center space-x-1">
-            <Icon.Star
-              height={16}
-              width={16}
-              stroke="orange"
-              fill="orange"
-            />
+            <Icon.Star height={16} width={16} stroke="orange" fill="orange" />
             <Text className="text-xs">
-              <Text className="text-green-700">
-                {item.stars}
-              </Text>
+              <Text className="text-green-700">{item.stars}</Text>
               <Text className="text-gray-700">
                 ({item.reviews} review) &bull; &nbsp;
                 <Text className="font-semibold text-black">
